@@ -1,0 +1,6 @@
+framework module TYSwizzle {
+  umbrella header "TYSwizzle-umbrella.h"
+
+  export *
+  module * { export * }
+}
