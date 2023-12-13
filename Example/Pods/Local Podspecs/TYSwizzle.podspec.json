@@ -1,9 +1,9 @@
 {
   "name": "TYSwizzle",
-  "version": "0.1.0",
-  "summary": "Swizzle OC Method",
+  "version": "1.0.0",
+  "summary": "通过动态创建子类的方式实现实例方法替换的效果，只对当前实例生效的方法替换，不影响全局",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/againxu/TYSwizzle",
+  "homepage": "https://github.com/Tory-Xu/TYSwizzle",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "756165690@qq.com": "756165690@qq.com"
   },
   "source": {
-    "git": "https://github.com/againxu/TYSwizzle.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/Tory-Xu/TYSwizzle.git",
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "8.0"

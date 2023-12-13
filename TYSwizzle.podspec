@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TYSwizzle'
-  s.version          = '0.1.0'
-  s.summary          = 'Swizzle OC Method'
+  s.version          = '1.0.0'
+  s.summary          = '通过动态创建子类的方式实现实例方法替换的效果，只对当前实例生效的方法替换，不影响全局'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/againxu/TYSwizzle'
+  s.homepage         = 'https://github.com/Tory-Xu/TYSwizzle'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '756165690@qq.com' => '756165690@qq.com' }
-  s.source           = { :git => 'https://github.com/againxu/TYSwizzle.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Tory-Xu/TYSwizzle.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

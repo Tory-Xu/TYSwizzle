@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "NSObject+TYSwizzleOnce.h"
+#import "NSObject+TYSwizzle.h"
 
 FOUNDATION_EXPORT double TYSwizzleVersionNumber;
 FOUNDATION_EXPORT const unsigned char TYSwizzleVersionString[];
