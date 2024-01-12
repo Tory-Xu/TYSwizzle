@@ -7,7 +7,9 @@
 //
 
 #import "NSObject+TYSwizzle.h"
-#import "objc/runtime.h"
+#import "TYLoggerManager.h"
+
+#import <objc/runtime.h>
 
 #if !__has_feature(objc_arc)
 #error This code needs ARC. Use compiler option -fobjc-arc
@@ -157,15 +159,30 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         // 获取当前真实类型
         Class isa = object_getClass(self);
         NSString *className = NSStringFromClass(isa);
+
         BOOL isKVOClass = NO;
+        // 目前已知的 KVO 类名有两种格式：“..NSKVONotifying_NSString” 和 “NSKVONotifying_NSString”
         if ([className containsString:kKVOClassKeyword]) {
             isKVOClass = YES;
-            className = [className stringByReplacingOccurrencesOfString:kKVOClassKeyword withString:@""];
+            Class superClass = class_getSuperclass(isa);
+            className = NSStringFromClass(superClass);
+            if ([className containsString:kKVOClassKeyword]) {
+                NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 父类还是 kvo 类型(%@)的情况未兼容过，查看如何兼容", object_getClass(self)];
+                [TYLoggerManager logAndAssert:NO message:log];
+                return nil;
+            }
+
             isa = NSClassFromString(className);
+            if (!isa) {
+                NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 获取不到 kvo 类型(%@)的父类", isa];
+                [TYLoggerManager logAndAssert:NO message:log];
+                return nil;
+            }
         }
+
         NSString *selectorName = NSStringFromSelector(selector);
         NSString *keyStr = TYKeyStr(key);
-        TYLog(@"[TYSwizzle] real class: %@, keyStr: %@, selector: %@", className, keyStr, selectorName);
+        TYLog(@"[TYSwizzle] real class: %@, keyStr: %@, selector: %@", object_getClass(self), keyStr, selectorName);
 
         Class subClass = isa;
         NSString *subClassName = className;
@@ -220,7 +237,9 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         } else {
             originSelectorImp = (IMP)[originImpDictForClass(subClassName)[selectorName] pointerValue];
             TYLog(@"[TYSwizzle] subClass(%@) 不需要添加函数实现，从记录中获取 selectorName(%@) 的 IMP(%@)", subClass, selectorName, [NSValue valueWithPointer:originSelectorImp]);
-            NSAssert(originSelectorImp, @"未找到原方法IMP，请检查？");
+            if (!originSelectorImp) {
+                [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 未找到原方法IMP，请检查？"];
+            }
         }
 
         TYLog(@"[TYSwizzle] 方法替换记录, ty_swizzledClassesDictionary：%@,\nty_originImpDictionary: %@", ty_swizzledClassesDictionary(), ty_originImpDictionary());
@@ -352,7 +371,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
                 options = options == NSNotFound ? NSKeyValueObservingOptionPrior : options | NSKeyValueObservingOptionPrior;
             }
         } else {
-            NSAssert(NO, @"找不到对应 keyPath 和 options，请检查");
+            [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 keyPath 和 options，请检查"];
             continue;
         }
 
@@ -364,7 +383,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
                                                                              options:options
                                                                              context:context]];
         } else {
-            NSAssert(NO, @"找不到对应 observer，请检查");
+            [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 observer，请检查"];
         }
     }
 

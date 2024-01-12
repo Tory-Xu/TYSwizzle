@@ -7,87 +7,91 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04D366B350A49332535E75CBFDE2B6A2 /* TYSwizzle-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0E7224EACC81263E26E935C47B43CF /* TYSwizzle-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EDBA81737510AADC131096D079343AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		1F8A5DB7F2583523923748ED17296F78 /* Pods-TYSwizzle_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A3164B235C4C450DDEABA317BC9BA7A4 /* Pods-TYSwizzle_Example-dummy.m */; };
-		35D60AE293F5B821CC4EA71B512A878C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		4606F0A64F0A12D1CD8218D04C31E7BD /* NSObject+TYSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A59F87250A7A1AA68CD3892BBF72E21 /* NSObject+TYSwizzle.m */; };
+		4FDA80E15ACD051C726E3A5BE4EE1FE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		541F68809D164D34F65BE054C02B8322 /* TYLoggerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A4C88E77305647F1A1A631721B11B298 /* TYLoggerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		628A094899D4518C9B5184AE8DE8BCB7 /* Pods-TYSwizzle_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8087B2D6355846EBC1B4155EE46376 /* Pods-TYSwizzle_Tests-dummy.m */; };
-		72F246434A0993A0D1E80CA6A77F460B /* NSObject+TYSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3E2FF564864253C1B3915537A0EA2 /* NSObject+TYSwizzle.m */; };
+		6FFB4A59E43922D5A58EFFDCDD52C784 /* TYSwizzle-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77CCACD2A253DD0CC8C61776FCE53A04 /* TYSwizzle-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		717BE1BEED13358DF68F044FF75AA8A3 /* NSObject+TYSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5855788D51EFC408600F7B3C02EE443C /* NSObject+TYSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7366C64D7DBABC8A0C27EBC3F5DDDE8C /* Pods-TYSwizzle_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D92911A7D4B793E2CA75BFC0653CB1A /* Pods-TYSwizzle_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D2810BE5D8D975CE8A8979D9FB15C07 /* TYLoggerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEB429AE14CF8DB0DFDBBC6FD7C7640 /* TYLoggerManager.m */; };
+		C138C3645FDDB90E283CBB8F4C73AE75 /* TYSwizzle-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB252B476A821F5F7851D07B2ED7F34C /* TYSwizzle-dummy.m */; };
 		CFE204BE5DF26D593D393D536CD33609 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		F92D48A7EB3CDCD5F4D600B55812F660 /* Pods-TYSwizzle_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CB701767EF662EDD514C7B29ACECFC0A /* Pods-TYSwizzle_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FB2EF03B3A953350E5542D2E9176CF69 /* NSObject+TYSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = D3BBA7551E1C7B0CE2E9049822B22C43 /* NSObject+TYSwizzle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCABDC9846C4E470156E0D8DD332AF16 /* TYSwizzle-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 44B93D0C244A4D866386E72A0390ED19 /* TYSwizzle-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		24A8E0F12D7E96B403B388DC2A6E2C07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 194A3DD498DD9DA7D3950AD92E4241BA;
-			remoteInfo = "Pods-TYSwizzle_Example";
-		};
-		73392C34DB4B1D724BC9F44EEA4ECDBE /* PBXContainerItemProxy */ = {
+		8863A1CAAB06385F073FB51E15D69D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2E9730E8CD656D58A0ABCAFD4BFC2C4E;
 			remoteInfo = TYSwizzle;
 		};
+		FDBA12A6A7665524FF64B3B4E6026A3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 194A3DD498DD9DA7D3950AD92E4241BA;
+			remoteInfo = "Pods-TYSwizzle_Example";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		022FC1DEA8BB7E90450F7BE87B5D9690 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		0791F5322AE876EB3BCAC34AA13D6BBE /* Pods-TYSwizzle_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYSwizzle_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0D92911A7D4B793E2CA75BFC0653CB1A /* Pods-TYSwizzle_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TYSwizzle_Example-umbrella.h"; sourceTree = "<group>"; };
-		14FDB43C0F2760B20FA1AEA7CC7BE8A8 /* TYSwizzle.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TYSwizzle.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		10C2D359BE695563033221645B28FD12 /* TYSwizzle-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYSwizzle-prefix.pch"; sourceTree = "<group>"; };
 		1A8912B166E601FC319C389079E2F408 /* Pods-TYSwizzle_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYSwizzle_Example"; path = Pods_TYSwizzle_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BF9B8B0B276A57025568BD1336EEEE6 /* Pods-TYSwizzle_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYSwizzle_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		1FE3E2FF564864253C1B3915537A0EA2 /* NSObject+TYSwizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+TYSwizzle.m"; path = "TYSwizzle/Classes/TYSwizzle/NSObject+TYSwizzle.m"; sourceTree = "<group>"; };
-		221065B58DCDAFA21279769B66E20978 /* TYSwizzle-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TYSwizzle-Info.plist"; sourceTree = "<group>"; };
 		24B08457F4587F08DB3A7F9FB5E843EB /* Pods-TYSwizzle_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYSwizzle_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		44B93D0C244A4D866386E72A0390ED19 /* TYSwizzle-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TYSwizzle-dummy.m"; sourceTree = "<group>"; };
+		49A7A7A51E17E1AB3E71D7BDC16519CD /* TYSwizzle-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TYSwizzle-Info.plist"; sourceTree = "<group>"; };
 		540BE4E6BBB926B757ED603E865DBFEC /* Pods-TYSwizzle_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYSwizzle_Tests-Info.plist"; sourceTree = "<group>"; };
 		54A3908D991F7D20C08486D61A734DB0 /* Pods-TYSwizzle_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TYSwizzle_Tests"; path = Pods_TYSwizzle_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5855788D51EFC408600F7B3C02EE443C /* NSObject+TYSwizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+TYSwizzle.h"; path = "TYSwizzle/Classes/TYSwizzle/NSObject+TYSwizzle.h"; sourceTree = "<group>"; };
+		589AE3640E371A5A70943482CEE1BC3E /* TYSwizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYSwizzle.debug.xcconfig; sourceTree = "<group>"; };
+		5A59F87250A7A1AA68CD3892BBF72E21 /* NSObject+TYSwizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+TYSwizzle.m"; path = "TYSwizzle/Classes/TYSwizzle/NSObject+TYSwizzle.m"; sourceTree = "<group>"; };
 		5E8087B2D6355846EBC1B4155EE46376 /* Pods-TYSwizzle_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TYSwizzle_Tests-dummy.m"; sourceTree = "<group>"; };
 		66FA2913074A3FE721F926066F4CBE3A /* Pods-TYSwizzle_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TYSwizzle_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		68A8A83779D45791C2E65F9D1317E686 /* TYSwizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYSwizzle.release.xcconfig; sourceTree = "<group>"; };
+		6A3B2E418FC1F1CC33C0C90AD24F7C9E /* TYSwizzle.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TYSwizzle.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7AAD9AF7ED7CE011EFC36E07BA7C4276 /* TYSwizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYSwizzle.release.xcconfig; sourceTree = "<group>"; };
+		77CCACD2A253DD0CC8C61776FCE53A04 /* TYSwizzle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYSwizzle-umbrella.h"; sourceTree = "<group>"; };
 		7ED54F9F46290ABDFE1C4FD25C1857C4 /* Pods-TYSwizzle_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYSwizzle_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		99797D9D6C95D2C08AEBE1AF87AEE625 /* TYSwizzle-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYSwizzle-prefix.pch"; sourceTree = "<group>"; };
+		8C04FEDF6386D1E18E220FC125282F74 /* TYSwizzle.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TYSwizzle.modulemap; sourceTree = "<group>"; };
+		98DFAEA7A6113E3CD9568A5DD4312344 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1F8C78382745766482458578E957D96 /* Pods-TYSwizzle_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TYSwizzle_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A3164B235C4C450DDEABA317BC9BA7A4 /* Pods-TYSwizzle_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TYSwizzle_Example-dummy.m"; sourceTree = "<group>"; };
+		A4C88E77305647F1A1A631721B11B298 /* TYLoggerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TYLoggerManager.h; path = TYSwizzle/Classes/TYSwizzle/TYLoggerManager.h; sourceTree = "<group>"; };
 		B7E4350AA89D3D4B1B7F3A4C5F557576 /* Pods-TYSwizzle_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TYSwizzle_Example-Info.plist"; sourceTree = "<group>"; };
-		BDA4322671EB94CF6144762B0BED81B5 /* TYSwizzle.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TYSwizzle.modulemap; sourceTree = "<group>"; };
 		CA2CF90F0C226ED6514798F923259745 /* TYSwizzle */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TYSwizzle; path = TYSwizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB701767EF662EDD514C7B29ACECFC0A /* Pods-TYSwizzle_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TYSwizzle_Tests-umbrella.h"; sourceTree = "<group>"; };
 		D1C9862AD4E4C2E838AA0B890528F298 /* Pods-TYSwizzle_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TYSwizzle_Example-frameworks.sh"; sourceTree = "<group>"; };
-		D3BBA7551E1C7B0CE2E9049822B22C43 /* NSObject+TYSwizzle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+TYSwizzle.h"; path = "TYSwizzle/Classes/TYSwizzle/NSObject+TYSwizzle.h"; sourceTree = "<group>"; };
-		D92422D476D2A7A7732C0DAEBA38049F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		E5BF68AB4DB714AA26FC7D45DC06379A /* Pods-TYSwizzle_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TYSwizzle_Example.modulemap"; sourceTree = "<group>"; };
-		EDB4451F4A0C0CEF193B14E6BDE17B6A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		EB252B476A821F5F7851D07B2ED7F34C /* TYSwizzle-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TYSwizzle-dummy.m"; sourceTree = "<group>"; };
+		ECEB429AE14CF8DB0DFDBBC6FD7C7640 /* TYLoggerManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TYLoggerManager.m; path = TYSwizzle/Classes/TYSwizzle/TYLoggerManager.m; sourceTree = "<group>"; };
 		EEC6DBD1360CBC30201FD46A7E355A4B /* Pods-TYSwizzle_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYSwizzle_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F9879E837AD77336E5F68397129345E7 /* Pods-TYSwizzle_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TYSwizzle_Tests.modulemap"; sourceTree = "<group>"; };
-		FA0E7224EACC81263E26E935C47B43CF /* TYSwizzle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TYSwizzle-umbrella.h"; sourceTree = "<group>"; };
 		FB8B31CC087B93EC40C1F9888D6D5162 /* Pods-TYSwizzle_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TYSwizzle_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		FE15F4A277EEA2A5AA29867567CF3B0A /* TYSwizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TYSwizzle.debug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0256B5C2730896BDF655B8B3B3C0BABB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				35D60AE293F5B821CC4EA71B512A878C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		166E3E09DEE9BE4008CE7267BE682EC5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CFE204BE5DF26D593D393D536CD33609 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D21E6D742D1C683DF61C8EAB78DCA38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FDA80E15ACD051C726E3A5BE4EE1FE7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,16 +106,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D9D7468FCBBD9AAC744842D9515C571 /* TYSwizzle */ = {
+		022FC26CCEB1E7F7F4567E4CDB0E5087 /* TYSwizzle */ = {
 			isa = PBXGroup;
 			children = (
-				D3BBA7551E1C7B0CE2E9049822B22C43 /* NSObject+TYSwizzle.h */,
-				1FE3E2FF564864253C1B3915537A0EA2 /* NSObject+TYSwizzle.m */,
-				2CC693B968322231F35B609C1EC112ED /* Pod */,
-				947FF38B70716B424F182F9AA16E14B2 /* Support Files */,
+				5855788D51EFC408600F7B3C02EE443C /* NSObject+TYSwizzle.h */,
+				5A59F87250A7A1AA68CD3892BBF72E21 /* NSObject+TYSwizzle.m */,
+				A4C88E77305647F1A1A631721B11B298 /* TYLoggerManager.h */,
+				ECEB429AE14CF8DB0DFDBBC6FD7C7640 /* TYLoggerManager.m */,
+				8758E463B180D7BDBFB044169B841FFE /* Pod */,
+				03E6A809852DBC57E1DC41C6D35B0859 /* Support Files */,
 			);
 			name = TYSwizzle;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		03E6A809852DBC57E1DC41C6D35B0859 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C04FEDF6386D1E18E220FC125282F74 /* TYSwizzle.modulemap */,
+				EB252B476A821F5F7851D07B2ED7F34C /* TYSwizzle-dummy.m */,
+				49A7A7A51E17E1AB3E71D7BDC16519CD /* TYSwizzle-Info.plist */,
+				10C2D359BE695563033221645B28FD12 /* TYSwizzle-prefix.pch */,
+				77CCACD2A253DD0CC8C61776FCE53A04 /* TYSwizzle-umbrella.h */,
+				589AE3640E371A5A70943482CEE1BC3E /* TYSwizzle.debug.xcconfig */,
+				68A8A83779D45791C2E65F9D1317E686 /* TYSwizzle.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TYSwizzle";
 			sourceTree = "<group>";
 		};
 		21A994F97F7D414B78863C569851A9E5 /* Products */ = {
@@ -122,16 +143,6 @@
 				CA2CF90F0C226ED6514798F923259745 /* TYSwizzle */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2CC693B968322231F35B609C1EC112ED /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				EDB4451F4A0C0CEF193B14E6BDE17B6A /* LICENSE */,
-				D92422D476D2A7A7732C0DAEBA38049F /* README.md */,
-				14FDB43C0F2760B20FA1AEA7CC7BE8A8 /* TYSwizzle.podspec */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		3A886E814AE9A872960FC49D98105332 /* Targets Support Files */ = {
@@ -151,10 +162,10 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		73F685A7B0067CA063FA0EB8E8E11529 /* Development Pods */ = {
+		66BCEA05E728D47438EB464F04FD3B0A /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1D9D7468FCBBD9AAC744842D9515C571 /* TYSwizzle */,
+				022FC26CCEB1E7F7F4567E4CDB0E5087 /* TYSwizzle */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -176,19 +187,14 @@
 			path = "Target Support Files/Pods-TYSwizzle_Example";
 			sourceTree = "<group>";
 		};
-		947FF38B70716B424F182F9AA16E14B2 /* Support Files */ = {
+		8758E463B180D7BDBFB044169B841FFE /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				BDA4322671EB94CF6144762B0BED81B5 /* TYSwizzle.modulemap */,
-				44B93D0C244A4D866386E72A0390ED19 /* TYSwizzle-dummy.m */,
-				221065B58DCDAFA21279769B66E20978 /* TYSwizzle-Info.plist */,
-				99797D9D6C95D2C08AEBE1AF87AEE625 /* TYSwizzle-prefix.pch */,
-				FA0E7224EACC81263E26E935C47B43CF /* TYSwizzle-umbrella.h */,
-				FE15F4A277EEA2A5AA29867567CF3B0A /* TYSwizzle.debug.xcconfig */,
-				7AAD9AF7ED7CE011EFC36E07BA7C4276 /* TYSwizzle.release.xcconfig */,
+				022FC1DEA8BB7E90450F7BE87B5D9690 /* LICENSE */,
+				98DFAEA7A6113E3CD9568A5DD4312344 /* README.md */,
+				6A3B2E418FC1F1CC33C0C90AD24F7C9E /* TYSwizzle.podspec */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/TYSwizzle";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		95105523659FB6D2A4908E4AF0B3B63A /* Pods-TYSwizzle_Tests */ = {
@@ -211,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				73F685A7B0067CA063FA0EB8E8E11529 /* Development Pods */,
+				66BCEA05E728D47438EB464F04FD3B0A /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				21A994F97F7D414B78863C569851A9E5 /* Products */,
 				3A886E814AE9A872960FC49D98105332 /* Targets Support Files */,
@@ -245,12 +251,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		649CD125D43A8DCD7F01900D02C22545 /* Headers */ = {
+		7FE44CD803E1B5A84DDF05BE5342912A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB2EF03B3A953350E5542D2E9176CF69 /* NSObject+TYSwizzle.h in Headers */,
-				04D366B350A49332535E75CBFDE2B6A2 /* TYSwizzle-umbrella.h in Headers */,
+				717BE1BEED13358DF68F044FF75AA8A3 /* NSObject+TYSwizzle.h in Headers */,
+				541F68809D164D34F65BE054C02B8322 /* TYLoggerManager.h in Headers */,
+				6FFB4A59E43922D5A58EFFDCDD52C784 /* TYSwizzle-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +276,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				059CEB2DE5E8E5D5D414E02EEDFC5C0E /* PBXTargetDependency */,
+				C9009F7ACF144E4C24E7C5E611234DFC /* PBXTargetDependency */,
 			);
 			name = "Pods-TYSwizzle_Example";
 			productName = Pods_TYSwizzle_Example;
@@ -278,12 +285,12 @@
 		};
 		2E9730E8CD656D58A0ABCAFD4BFC2C4E /* TYSwizzle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 707DB398669CE3BE33E0023C1A3BE9A0 /* Build configuration list for PBXNativeTarget "TYSwizzle" */;
+			buildConfigurationList = 1E1BBE6BA17103B0A6D12EEBB4B2BDD6 /* Build configuration list for PBXNativeTarget "TYSwizzle" */;
 			buildPhases = (
-				649CD125D43A8DCD7F01900D02C22545 /* Headers */,
-				616DD0EAA2F37E5800179F304D778983 /* Sources */,
-				0256B5C2730896BDF655B8B3B3C0BABB /* Frameworks */,
-				ABD5EE55BD960BC7AD1A8B5B30BC80EE /* Resources */,
+				7FE44CD803E1B5A84DDF05BE5342912A /* Headers */,
+				C2B71DF272FC315BA25E3C159C2C39C1 /* Sources */,
+				6D21E6D742D1C683DF61C8EAB78DCA38 /* Frameworks */,
+				C716D63504B7888BBBF736F5AB27EFA6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -306,7 +313,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8FF4CB453C8DD2539953C5942FF6981A /* PBXTargetDependency */,
+				285B00C4C8124F910DB630EB6CC82933 /* PBXTargetDependency */,
 			);
 			name = "Pods-TYSwizzle_Tests";
 			productName = Pods_TYSwizzle_Tests;
@@ -350,14 +357,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABD5EE55BD960BC7AD1A8B5B30BC80EE /* Resources */ = {
+		C559A4B3C59DFB20BAADFB2EF378F1D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C559A4B3C59DFB20BAADFB2EF378F1D1 /* Resources */ = {
+		C716D63504B7888BBBF736F5AB27EFA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,20 +374,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		616DD0EAA2F37E5800179F304D778983 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				72F246434A0993A0D1E80CA6A77F460B /* NSObject+TYSwizzle.m in Sources */,
-				FCABDC9846C4E470156E0D8DD332AF16 /* TYSwizzle-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		81BE4327909A91E895D039AB2CE1087F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1F8A5DB7F2583523923748ED17296F78 /* Pods-TYSwizzle_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B71DF272FC315BA25E3C159C2C39C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4606F0A64F0A12D1CD8218D04C31E7BD /* NSObject+TYSwizzle.m in Sources */,
+				7D2810BE5D8D975CE8A8979D9FB15C07 /* TYLoggerManager.m in Sources */,
+				C138C3645FDDB90E283CBB8F4C73AE75 /* TYSwizzle-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,17 +403,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		059CEB2DE5E8E5D5D414E02EEDFC5C0E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TYSwizzle;
-			target = 2E9730E8CD656D58A0ABCAFD4BFC2C4E /* TYSwizzle */;
-			targetProxy = 73392C34DB4B1D724BC9F44EEA4ECDBE /* PBXContainerItemProxy */;
-		};
-		8FF4CB453C8DD2539953C5942FF6981A /* PBXTargetDependency */ = {
+		285B00C4C8124F910DB630EB6CC82933 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TYSwizzle_Example";
 			target = 194A3DD498DD9DA7D3950AD92E4241BA /* Pods-TYSwizzle_Example */;
-			targetProxy = 24A8E0F12D7E96B403B388DC2A6E2C07 /* PBXContainerItemProxy */;
+			targetProxy = FDBA12A6A7665524FF64B3B4E6026A3C /* PBXContainerItemProxy */;
+		};
+		C9009F7ACF144E4C24E7C5E611234DFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TYSwizzle;
+			target = 2E9730E8CD656D58A0ABCAFD4BFC2C4E /* TYSwizzle */;
+			targetProxy = 8863A1CAAB06385F073FB51E15D69D25 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -436,6 +444,36 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		620D22E0F6B8BA2E98BFA0D8E5E2DDB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 589AE3640E371A5A70943482CEE1BC3E /* TYSwizzle.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TYSwizzle/TYSwizzle-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TYSwizzle/TYSwizzle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TYSwizzle/TYSwizzle.modulemap";
+				PRODUCT_MODULE_NAME = TYSwizzle;
+				PRODUCT_NAME = TYSwizzle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -537,9 +575,9 @@
 			};
 			name = Release;
 		};
-		B916AA5F31D20FFCB54D57F3A6372F0B /* Debug */ = {
+		ADA6E0FE45C7F0D33C4755B55F0227F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE15F4A277EEA2A5AA29867567CF3B0A /* TYSwizzle.debug.xcconfig */;
+			baseConfigurationReference = 68A8A83779D45791C2E65F9D1317E686 /* TYSwizzle.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -562,10 +600,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		C5A624BE35CC8B21E449888BA1483211 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -598,37 +637,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		DF7131AE4526221F3401037D07541065 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AAD9AF7ED7CE011EFC36E07BA7C4276 /* TYSwizzle.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TYSwizzle/TYSwizzle-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TYSwizzle/TYSwizzle-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TYSwizzle/TYSwizzle.modulemap";
-				PRODUCT_MODULE_NAME = TYSwizzle;
-				PRODUCT_NAME = TYSwizzle;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		E4D0D44B090D4284607EBBC4E71A96C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -741,20 +749,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		1E1BBE6BA17103B0A6D12EEBB4B2BDD6 /* Build configuration list for PBXNativeTarget "TYSwizzle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				620D22E0F6B8BA2E98BFA0D8E5E2DDB5 /* Debug */,
+				ADA6E0FE45C7F0D33C4755B55F0227F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4D0D44B090D4284607EBBC4E71A96C1 /* Debug */,
 				6D42DC62C4F2E194221DF89C48496C98 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		707DB398669CE3BE33E0023C1A3BE9A0 /* Build configuration list for PBXNativeTarget "TYSwizzle" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B916AA5F31D20FFCB54D57F3A6372F0B /* Debug */,
-				DF7131AE4526221F3401037D07541065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

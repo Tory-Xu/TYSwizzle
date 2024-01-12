@@ -22,6 +22,18 @@ it, simply add the following line to your Podfile:
 pod 'TYSwizzle'
 ```
 
+## 版本记录
+
+### 1.0.1
+修复 KVO 崩溃：
+说明：KVO 类名有两种格式“..NSKVONotifying_NSString” 和 “NSKVONotifying_NSString”，之前实现中将 “NSKVONotifying” 替换为 “”，导致父类获取失败引发崩溃。
+修改：
+1. 通过获取父类的方式获取，而不是字符串操作
+2. 针对异常情况，提供 TYLoggerManager 上报，外部可以设置日志函数进行处理
+
+### 1.0.0
+实现 TYSwizzle ，支持各种场景下方法替换。（可查看单元测试了解）
+
 ## 使用教程
 
 在 test.m 单元测试和 TYViewController.m 中案例。

@@ -11,6 +11,7 @@
 #endif
 
 #import "NSObject+TYSwizzle.h"
+#import "TYLoggerManager.h"
 
 FOUNDATION_EXPORT double TYSwizzleVersionNumber;
 FOUNDATION_EXPORT const unsigned char TYSwizzleVersionString[];

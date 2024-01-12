@@ -1,6 +1,6 @@
 {
   "name": "TYSwizzle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "通过动态创建子类的方式实现实例方法替换的效果，只对当前实例生效的方法替换，不影响全局",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/Tory-Xu/TYSwizzle",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/Tory-Xu/TYSwizzle.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "platforms": {
     "ios": "8.0"

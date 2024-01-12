@@ -1,5 +1,5 @@
 PODS:
-  - TYSwizzle (1.0.0)
+  - TYSwizzle (1.0.1)
 
 DEPENDENCIES:
   - TYSwizzle (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TYSwizzle: 66aebb669a87fa3eae6fea5e693d2097ba0c473b
+  TYSwizzle: 2dcc830956bb65e1e2720daff158f4afa87557fc
 
 PODFILE CHECKSUM: 547de8ea8508c071e2f3d6b88991b0bfb0acbc3f
 
