@@ -164,75 +164,33 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         // 获取当前真实类型
         Class isa = object_getClass(self);
         NSString *className = NSStringFromClass(isa);
-
+        // 处理KVO类型
         BOOL isKVOClass = NO;
-        // 目前已知的 KVO 类名有两种格式：“..NSKVONotifying_NSString” 和 “NSKVONotifying_NSString”
-        if ([className containsString:kKVOClassKeyword]) {
-            isKVOClass = YES;
-            Class superClass = class_getSuperclass(isa);
-            className = NSStringFromClass(superClass);
-            if ([className containsString:kKVOClassKeyword]) {
-                NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 父类还是 kvo 类型(%@)的情况未兼容过，查看如何兼容", object_getClass(self)];
-                [TYLoggerManager logAndAssert:NO message:log];
-                return nil;
-            }
-
-            isa = NSClassFromString(className);
-            if (!isa) {
-                NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 获取不到 kvo 类型(%@)的父类", isa];
-                [TYLoggerManager logAndAssert:NO message:log];
-                return nil;
-            }
+        if (![self handleKVOClassIfNeeded:&isa className:&className isKVOClass:&isKVOClass]) {
+            return nil;
         }
 
         NSString *selectorName = NSStringFromSelector(selector);
         NSString *keyStr = TYKeyStr(key);
         TYLog(@"[TYSwizzle] real class: %@, keyStr: %@, selector: %@", object_getClass(self), keyStr, selectorName);
 
+        // 处理类和方法
         Class subClass = isa;
         NSString *subClassName = className;
         BOOL shouldAddMethod = NO;
-        NSArray<NSString *> *keys = [className componentsSeparatedByString:kDelimiter];
-        if ([keys containsObject:keyStr]) { // 类中包含功能
-            if ([keys.firstObject isEqualToString:keyStr]) {
-                shouldAddMethod = ![swizzledMethods(className) containsObject:selectorName];
-            } else {
-#if DEBUG
-                // 检查使用是否异常
-                NSInteger index = [keys indexOfObject:keyStr];
-                NSString *classNameForKey = [[keys subarrayWithRange:NSMakeRange(index, keys.count - index)]
-                    componentsJoinedByString:kDelimiter];
-                NSAssert1([swizzledMethods(classNameForKey) containsObject:selectorName],
-                          @"该替换功能实际是通过实现子类的方式进行实现，因此一个key(%@)对应的所有方法替换必须一次完成，否则可能出现问题，请检查错误",
-                          keyStr);
-#endif
-                return nil;
-            }
-        } else { // 使用子类
-            subClassName = [NSString stringWithFormat:@"%@%@%@", keyStr, kDelimiter, className];
-            subClass = NSClassFromString(subClassName);
-            if (subClass) {
-                shouldAddMethod = ![swizzledMethods(subClassName) containsObject:selectorName];
-                TYLog(@"[TYSwizzle] %@ 的子类 %@ 已经创建， %@添加替换函数实现", className, subClassName, shouldAddMethod ? @"" : @"不");
-            } else { // 创建子类
-                TYLog(@"[TYSwizzle] 创建 %@ 的子类 %@", className, subClassName);
-                shouldAddMethod = YES;
-                subClass = [self createSubClassWithName:subClassName forClass:isa];
-            }
 
-            NSArray<TYObservanceInfo *> *observationInfos = nil;
-            if (isKVOClass) { // 先移除 kvo
-                observationInfos = [self getKVOObservanceInfos];
-                [self removeObserverForKVO:observationInfos];
-            }
-            // !!!: 修改 isa 指针指向子类（将原对象类型修改为子类类型）
-            TYLog(@"[TYSwizzle] isa(%@) 修改为 %@", isa, subClass);
-            object_setClass(self, subClass);
-            if (observationInfos.count) { // 再添加 kvo
-                [self addObserverForKVO:observationInfos];
-            }
+        if (![self handleClassAndMethod:keyStr
+                              className:className
+                           subClassName:&subClassName
+                               subClass:&subClass
+                        shouldAddMethod:&shouldAddMethod
+                                    isa:isa
+                             isKVOClass:isKVOClass
+                           selectorName:selectorName]) {
+            return nil;
         }
 
+        // 添加或获取方法实现
         if (shouldAddMethod) { // 添加新的函数实现
             originSelectorImp = [self createNewMethodForClass:subClass
                                                  subClassName:subClassName
@@ -240,17 +198,105 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
                                                  selectorName:selectorName
                                                  factoryBlock:factoryBlock];
         } else {
-            originSelectorImp = (IMP)[originImpDictForClass(subClassName)[selectorName] pointerValue];
-            TYLog(@"[TYSwizzle] subClass(%@) 不需要添加函数实现，从记录中获取 selectorName(%@) 的 IMP(%@)", subClass, selectorName, [NSValue valueWithPointer:originSelectorImp]);
-            if (!originSelectorImp) {
-                [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 未找到原方法IMP，请检查？"];
-            }
+            originSelectorImp = [self getExistingMethodImplementation:subClassName selectorName:selectorName];
         }
 
         TYLog(@"[TYSwizzle] 方法替换记录, ty_swizzledClassesDictionary：%@,\nty_originImpDictionary: %@", ty_swizzledClassesDictionary(), ty_originImpDictionary());
     }
 
     TYLog(@"[TYSwizzle]====== swizzle end ======\n\n\n");
+    return originSelectorImp;
+}
+
+// 处理KVO类型
+- (BOOL)handleKVOClassIfNeeded:(Class *)isa
+                     className:(NSString **)className
+                    isKVOClass:(BOOL *)isKVOClass {
+    // 目前已知的 KVO 类名有两种格式："..NSKVONotifying_NSString" 和 "NSKVONotifying_NSString"
+    if ([*className containsString:kKVOClassKeyword]) {
+        *isKVOClass = YES;
+        Class superClass = class_getSuperclass(*isa);
+        *className = NSStringFromClass(superClass);
+        if ([*className containsString:kKVOClassKeyword]) {
+            NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 父类还是 kvo 类型(%@)的情况未兼容过，查看如何兼容", object_getClass(self)];
+            [TYLoggerManager logAndAssert:NO message:log];
+            return NO;
+        }
+
+        *isa = NSClassFromString(*className);
+        if (!*isa) {
+            NSString *log = [NSString stringWithFormat:@"[TYSwizzle] 获取不到 kvo 类型(%@)的父类", *isa];
+            [TYLoggerManager logAndAssert:NO message:log];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+// 处理类和方法
+- (BOOL)handleClassAndMethod:(NSString *)keyStr
+                   className:(NSString *)className
+                subClassName:(NSString **)subClassName
+                    subClass:(Class *)subClass
+             shouldAddMethod:(BOOL *)shouldAddMethod
+                         isa:(Class)isa
+                  isKVOClass:(BOOL)isKVOClass
+                selectorName:(NSString *)selectorName {
+    NSArray<NSString *> *keys = [className componentsSeparatedByString:kDelimiter];
+    if ([keys containsObject:keyStr]) { // 类中包含功能
+        if ([keys.firstObject isEqualToString:keyStr]) {
+            *shouldAddMethod = ![swizzledMethods(className) containsObject:selectorName];
+        } else {
+#if DEBUG
+            // 检查使用是否异常
+            NSInteger index = [keys indexOfObject:keyStr];
+            NSString *classNameForKey = [[keys subarrayWithRange:NSMakeRange(index, keys.count - index)]
+                componentsJoinedByString:kDelimiter];
+            NSAssert1([swizzledMethods(classNameForKey) containsObject:selectorName],
+                      @"该替换功能实际是通过实现子类的方式进行实现，因此一个key(%@)对应的所有方法替换必须一次完成，否则可能出现问题，请检查错误",
+                      keyStr);
+#endif
+            return NO;
+        }
+    } else { // 使用子类
+        *subClassName = [NSString stringWithFormat:@"%@%@%@", keyStr, kDelimiter, className];
+        *subClass = NSClassFromString(*subClassName);
+        if (*subClass) {
+            *shouldAddMethod = ![swizzledMethods(*subClassName) containsObject:selectorName];
+            TYLog(@"[TYSwizzle] %@ 的子类 %@ 已经创建， %@添加替换函数实现", className, *subClassName, *shouldAddMethod ? @"" : @"不");
+        } else { // 创建子类
+            TYLog(@"[TYSwizzle] 创建 %@ 的子类 %@", className, *subClassName);
+            *shouldAddMethod = YES;
+            *subClass = [self createSubClassWithName:*subClassName forClass:isa];
+        }
+
+        [self updateObjectClass:*subClass isa:isa isKVOClass:isKVOClass];
+    }
+    return YES;
+}
+
+// 更新对象类
+- (void)updateObjectClass:(Class)subClass isa:(Class)isa isKVOClass:(BOOL)isKVOClass {
+    NSArray<TYObservanceInfo *> *observationInfos = nil;
+    if (isKVOClass) { // 先移除 kvo
+        observationInfos = [self getKVOObservanceInfos];
+        [self removeObserverForKVO:observationInfos];
+    }
+    // !!!: 修改 isa 指针指向子类（将原对象类型修改为子类类型）
+    TYLog(@"[TYSwizzle] isa(%@) 修改为 %@", isa, subClass);
+    object_setClass(self, subClass);
+    if (observationInfos.count) { // 再添加 kvo
+        [self addObserverForKVO:observationInfos];
+    }
+}
+
+// 获取已存在的方法实现
+- (IMP)getExistingMethodImplementation:(NSString *)subClassName selectorName:(NSString *)selectorName {
+    IMP originSelectorImp = (IMP)[originImpDictForClass(subClassName)[selectorName] pointerValue];
+    TYLog(@"[TYSwizzle] subClass(%@) 不需要添加函数实现，从记录中获取 selectorName(%@) 的 IMP(%@)", subClassName, selectorName, [NSValue valueWithPointer:originSelectorImp]);
+    if (!originSelectorImp) {
+        [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 未找到原方法IMP，请检查？"];
+    }
     return originSelectorImp;
 }
 
@@ -412,4 +458,3 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
 }
 
 @end
-
