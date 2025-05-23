@@ -388,57 +388,84 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
     NSArray<id> *observances = [self getIvar:kObservances from:observationInfo];
     NSInteger count = observances.count;
     NSMutableArray<TYObservanceInfo *> *observanceInfoList = [NSMutableArray arrayWithCapacity:count];
+
     for (int i = 0; i < count; i++) {
-        // [observance description]:  <NSKeyValueObservance 0x600000c87f60: Observer: 0x106007e90, Key path: name, Options: <New: YES, Old: NO, Prior: NO> Context: 0x106007e90, Property: 0x600000c87f00>
         id observance = observances[i];
         NSLog(@"[TYSwizzle-test] observance: %@", [observance description]);
-        NSString *observanceInfo = [[observance description] stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-        NSString *keyPath = nil;
-        NSKeyValueObservingOptions options = NSNotFound;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kGetKeyPathAndOptionsRule
-                                                                               options:0
-                                                                                 error:nil];
-        NSTextCheckingResult *result = [regex firstMatchInString:observanceInfo
-                                                         options:0
-                                                           range:NSMakeRange(0, [observanceInfo length])];
-        if (result && result.numberOfRanges == 5) {
-            NSRange keyPathRange = [result rangeAtIndex:1];
-            NSRange newRange = [result rangeAtIndex:2];
-            NSRange oldRange = [result rangeAtIndex:3];
-            NSRange priorRange = [result rangeAtIndex:4];
-
-            keyPath = [observanceInfo substringWithRange:keyPathRange];
-            NSString *newValue = [observanceInfo substringWithRange:newRange];
-            NSString *oldValue = [observanceInfo substringWithRange:oldRange];
-            NSString *priorValue = [observanceInfo substringWithRange:priorRange];
-
-            if ([newValue isEqualToString:kYES]) {
-                options = options == NSNotFound ? NSKeyValueObservingOptionNew : options | NSKeyValueObservingOptionNew;
-            }
-            if ([oldValue isEqualToString:kYES]) {
-                options = options == NSNotFound ? NSKeyValueObservingOptionOld : options | NSKeyValueObservingOptionOld;
-            }
-            if ([priorValue isEqualToString:kYES]) {
-                options = options == NSNotFound ? NSKeyValueObservingOptionPrior : options | NSKeyValueObservingOptionPrior;
-            }
-        } else {
-            [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 keyPath 和 options，请检查"];
-            continue;
-        }
-
-        NSObject *observer = [self getIvar:kObserver from:observance];
-        if (observer) {
-            [observanceInfoList addObject:[[TYObservanceInfo alloc] initWithObserver:observer
-                                                                             keyPath:keyPath
-                                                                             options:options
-                                                                             context:[self getContentFrom:observance]]];
-        } else {
-            [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 observer，请检查"];
+        TYObservanceInfo *observanceInfo = [self parseObservanceInfo:observance];
+        if (observanceInfo) {
+            [observanceInfoList addObject:observanceInfo];
         }
     }
 
     return observanceInfoList.copy;
+}
+
+// 解析观察者信息
+- (TYObservanceInfo *)parseObservanceInfo:(id)observance {
+    NSString *observanceInfoStr = [[observance description] stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    // 解析 keyPath 和 options
+    NSString *keyPath = nil;
+    NSKeyValueObservingOptions options = NSNotFound;
+
+    if (![self parseKeyPathAndOptions:observanceInfoStr keyPath:&keyPath options:&options]) {
+        return nil;
+    }
+
+    // 获取观察者
+    NSObject *observer = [self getIvar:kObserver from:observance];
+    if (!observer) {
+        [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 observer，请检查"];
+        return nil;
+    }
+
+    // 创建观察者信息对象
+    return [[TYObservanceInfo alloc] initWithObserver:observer
+                                              keyPath:keyPath
+                                              options:options
+                                              context:[self getContentFrom:observance]];
+}
+
+// 解析 keyPath 和 options
+- (BOOL)parseKeyPathAndOptions:(NSString *)observanceInfoStr
+                       keyPath:(NSString **)keyPath
+                       options:(NSKeyValueObservingOptions *)options {
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:kGetKeyPathAndOptionsRule
+                                                                           options:0
+                                                                             error:nil];
+    NSTextCheckingResult *result = [regex firstMatchInString:observanceInfoStr
+                                                     options:0
+                                                       range:NSMakeRange(0, [observanceInfoStr length])];
+
+    if (!(result && result.numberOfRanges == 5)) {
+        [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 keyPath 和 options，请检查"];
+        return NO;
+    }
+
+    NSRange keyPathRange = [result rangeAtIndex:1];
+    NSRange newRange = [result rangeAtIndex:2];
+    NSRange oldRange = [result rangeAtIndex:3];
+    NSRange priorRange = [result rangeAtIndex:4];
+
+    *keyPath = [observanceInfoStr substringWithRange:keyPathRange];
+    NSString *newValue = [observanceInfoStr substringWithRange:newRange];
+    NSString *oldValue = [observanceInfoStr substringWithRange:oldRange];
+    NSString *priorValue = [observanceInfoStr substringWithRange:priorRange];
+
+    *options = NSNotFound;
+    if ([newValue isEqualToString:kYES]) {
+        *options = *options == NSNotFound ? NSKeyValueObservingOptionNew : *options | NSKeyValueObservingOptionNew;
+    }
+    if ([oldValue isEqualToString:kYES]) {
+        *options = *options == NSNotFound ? NSKeyValueObservingOptionOld : *options | NSKeyValueObservingOptionOld;
+    }
+    if ([priorValue isEqualToString:kYES]) {
+        *options = *options == NSNotFound ? NSKeyValueObservingOptionPrior : *options | NSKeyValueObservingOptionPrior;
+    }
+
+    return YES;
 }
 
 - (id _Nullable)getIvar:(const char *)ivarName from:(id)object {
