@@ -117,16 +117,17 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
 @property (nonatomic, strong) NSObject *observer;
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, assign) NSKeyValueObservingOptions options;
-@property (nonatomic, strong) id _Nullable context;
 
 @end
 
-@implementation TYObservanceInfo
+@implementation TYObservanceInfo {
+    void *_context;
+}
 
 - (instancetype)initWithObserver:(NSObject *)observer
                          keyPath:(NSString *)keyPath
                          options:(NSKeyValueObservingOptions)options
-                         context:(id _Nullable)context {
+                         context:(nullable void *)context {
     self = [super init];
     if (self) {
         _observer = observer;
@@ -135,6 +136,10 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         _context = context;
     }
     return self;
+}
+
+- (nullable void *)context {
+    return _context;
 }
 
 @end
@@ -198,7 +203,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
                 NSString *classNameForKey = [[keys subarrayWithRange:NSMakeRange(index, keys.count - index)]
                     componentsJoinedByString:kDelimiter];
                 NSAssert1([swizzledMethods(classNameForKey) containsObject:selectorName],
-                          @"该替换功能实际是通过实现子类的方式进行实现，因此一个key(%@)对应的所有替换必须再下一次实现子类之前完成，请检查错误",
+                          @"该替换功能实际是通过实现子类的方式进行实现，因此一个key(%@)对应的所有方法替换必须一次完成，否则可能出现问题，请检查错误",
                           keyStr);
 #endif
                 return nil;
@@ -311,7 +316,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         [self addObserver:observationInfo.observer
                forKeyPath:observationInfo.keyPath
                   options:observationInfo.options
-                  context:(__bridge void *_Nullable) (observationInfo.context)];
+                  context:observationInfo.context];
     }
 }
 
@@ -323,7 +328,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
     for (TYObservanceInfo *observationInfo in observationInfos) {
         [self removeObserver:observationInfo.observer
                   forKeyPath:observationInfo.keyPath
-                     context:(__bridge void *_Nullable) (observationInfo.context)];
+                     context:observationInfo.context];
     }
 }
 
@@ -340,6 +345,7 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
     for (int i = 0; i < count; i++) {
         // [observance description]:  <NSKeyValueObservance 0x600000c87f60: Observer: 0x106007e90, Key path: name, Options: <New: YES, Old: NO, Prior: NO> Context: 0x106007e90, Property: 0x600000c87f00>
         id observance = observances[i];
+        NSLog(@"[TYSwizzle-test] observance: %@", [observance description]);
         NSString *observanceInfo = [[observance description] stringByReplacingOccurrencesOfString:@" " withString:@""];
 
         NSString *keyPath = nil;
@@ -376,12 +382,11 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
         }
 
         NSObject *observer = [self getIvar:kObserver from:observance];
-        id context = [self getIvar:kContext from:observance];
         if (observer) {
             [observanceInfoList addObject:[[TYObservanceInfo alloc] initWithObserver:observer
                                                                              keyPath:keyPath
                                                                              options:options
-                                                                             context:context]];
+                                                                             context:[self getContentFrom:observance]]];
         } else {
             [TYLoggerManager logAndAssert:NO message:@"[TYSwizzle] 找不到对应 observer，请检查"];
         }
@@ -398,4 +403,13 @@ static NSMutableDictionary<NSString *, NSValue *> *originImpDictForClass(NSStrin
     return nil;
 }
 
+- (void *)getContentFrom:(id)object {
+    Ivar ivar = class_getInstanceVariable([object class], kContext);
+    if (ivar) {
+        return (__bridge void *) object_getIvar(object, ivar);
+    }
+    return nil;
+}
+
 @end
+
